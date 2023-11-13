@@ -1,0 +1,43 @@
+# AGs Project - How to split up big Vols
+
+## Purpose
+
+The purpose is to split up a big volume into the references (DABs, HCOBs, Lectures, Books etc) into single files and give them the correct filenames, so that these will be found by file search.
+
+## Preparation:
+
+    • Install python 
+    • Install Ghostscript, used here to import bookmark to pdf file.
+    • Install https://github.com/xianghuzhao/pdf-bookmark  and all the needed apps.
+    • D/L splitpdf.jar here https://sourceforge.net/projects/splitpdf/files/latest/download 
+    • And you will need Abbyy Finereader 15 – upgrade to newest built 6: menu-help-checkOnUpdates. the latter is only needed, if after opening a pdf, you can not find in menu: File-split pdf
+    • You get the big volume PDFs and these Files:
+        ◦ vol01.bmk.ods 		for reference of the TOC-table and its formula for filename
+        ◦ vol01.bmk			for the bookmark-table (example) for split
+## Steps
+for the years 1950-59 the table for bookmarking was already created by Russians:
+/media/res/HDD_V_eBib/eBib/Cloud.ma1l.ru-Sc1entology Arch1ve/ENGLISH/TEXTS/VOLUMES RED/Tech Volumes Bookmarks in work/содержания/
+/media/res/HDD_V_eBib/eBib/Cloud.ma1l.ru-Sc1entology Arch1ve/ENGLISH/TEXTS/VOLUMES RED/Tech Volumes Bookmarks in work/содержания/50-53/50-53 contents.xls
+The following steps for the Red Vols:
+    1. do OCR of the Vol07, especially with tabulated TOC.
+    2. save the pages with the TOC as .xls.
+    3. re-edit the date there so that it is completed: Each file should get the name as per day.month.year – if the date was given like autuum 1952 I made it 1.10.1952, if "about 1952" it becomes 1.1.1952.
+    4. then create an output column for the file name, increasing the pageno by the number of infro pages (page i to xxviii). All special characters that are not allowed in filenames must be deleted or replaced: ( ) " * / \ : < > ? |
+    5. write this column via cut-n-paste into a text file named vol07.bmk. 
+    6. in the terminal give this command 
+pdf-bookmark -p V07-1950-1952.pdf -b vol01.bmk -o V01-1950-1952-bmk.pdf
+or
+pdf-bookmark -p “680520 Dianetic Auditors Course 20 May 1968 OCR.pdf” -b HDA.bmk -o HDA-bmk.pdf
+This writes a bookmark to the output file V07-1950-1952-bmk.pdf on each page starting with a reference.
+    7. Open the output-pdf and check, whether the bookmarks are correct. Look at the end. Sometimes there are faults, find the reason and correct. This stems from the fact, that in the original pdf the page numbering is not correct: pages are missing or additional.
+    8. Use one of the methods:
+        1. use command:
+java -jar SplitPDF.jar -iFile HDA-bmk.pdf
+        2. Install newest PDFsam: https://pdfsam.org/download-pdfsam-basic/ - 
+        3. costly: https://www.sejda.com/split-pdf-by-outline and upload the pdf and let is split by bookmarks. Use options: 
+        4. Then in Abbyy 15 open the pdf and after successful OCR of the pdf give this command: File-Split pages: By bookmark, filename as bookmark and no numbering and in a separate folder for this volume: i.e. /Red Vols 1991/Vol07.
+        5. https://pdf.wondershare.com/how-to/split-pdf-by-bookmarks.html
+        6. Adobe Acrobat https://www.rockymountaintraining.com/adobe-acrobat-splitting-pdf-using-bookmarks/ 
+    9. Open some of the output-pdfs (especially the last ones of the vol) and check, whether filename and title are correct. Sometimes there are faults, find the reason and correct. 
+       Finished
+
